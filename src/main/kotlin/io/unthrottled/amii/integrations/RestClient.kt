@@ -44,7 +44,7 @@ object RestTools {
           runSafelyWithResult({
             val body = bodyExtractor(request.inputStream)
             log.info("Asset has responded for remote asset: $url")
-            body.toOptional()
+            Optional.ofNullable(body) // Corregido aquí
           }) {
             log.warn("Unable to get remote asset: $url for raisins", it)
             Optional.empty<T>()
@@ -56,3 +56,4 @@ object RestTools {
     }
   }
 }
+
